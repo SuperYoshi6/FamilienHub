@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -24,7 +25,8 @@
               'slide-in': 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
               'slide-up': 'slideUp 0.3s ease-out forwards',
               'fade-in': 'fadeIn 0.4s ease-out forwards',
-              'gradient-x': 'gradientX 15s ease infinite',
+              'gradient-x': 'gradientX 20s ease infinite',
+              'blob': 'blob 7s infinite',
             },
             keyframes: {
               float: {
@@ -47,6 +49,12 @@
                 '0%': { 'background-position': '0% 50%' },
                 '50%': { 'background-position': '100% 50%' },
                 '100%': { 'background-position': '0% 50%' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
               }
             }
           }
@@ -119,95 +127,66 @@
         width: 100%;
       }
 
-      /* --- APPLE-STYLE LIQUID GLASS EFFECT (v4 Improved Readability) --- */
+      /* --- LIQUID GLASS EFFECT v6 (Subtle Blue) --- */
       
-      /* Background Animation */
       body.liquid-glass {
-        background: linear-gradient(125deg, #EEF2FF, #E0E7FF, #FAE8FF, #F3E8FF, #FFFFFF);
-        background-size: 300% 300%;
-        animation: gradientX 25s ease infinite;
+        /* Sehr schwaches, dezentes Blau (Ice/Sky/White Mix) */
+        background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #dbeafe, #eff6ff);
+        background-size: 400% 400%;
+        animation: gradientX 20s ease infinite;
         background-attachment: fixed;
       }
       
       html.dark body.liquid-glass {
-        /* Darker, deeper colors for better contrast */
-        background: linear-gradient(125deg, #020617, #0f172a, #1e1b4b, #111827, #000000);
-        background-size: 300% 300%;
-        animation: gradientX 30s ease infinite;
-        background-attachment: fixed;
+        /* Dunkles, dezentes Navy/Slate Blau */
+        background: linear-gradient(-45deg, #0f172a, #172554, #1e1b4b, #020617);
+        background-size: 400% 400%;
+        animation: gradientX 25s ease infinite;
       }
 
-      /* Glass Cards & Elements */
+      /* Glass Cards - Slightly clearer for subtle background */
       body.liquid-glass .bg-white,
       body.liquid-glass .bg-gray-50 {
-        background-color: rgba(255, 255, 255, 0.70) !important;
-        backdrop-filter: saturate(180%) blur(20px) !important;
-        -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+        background: rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05) !important;
       }
 
-      /* DARK MODE GLASS - Increased Opacity for Readability */
+      /* Dark Mode Glass Cards */
       html.dark body.liquid-glass .dark\:bg-gray-800,
       html.dark body.liquid-glass .dark\:bg-gray-900,
       html.dark body.liquid-glass .dark\:bg-gray-700,
       html.dark body.liquid-glass .bg-gray-900,
       html.dark body.liquid-glass .bg-gray-800 {
-        /* Increased opacity from 0.70 to 0.85 */
-        background-color: rgba(18, 24, 38, 0.85) !important; 
-        backdrop-filter: saturate(150%) blur(25px) !important;
-        -webkit-backdrop-filter: saturate(150%) blur(25px) !important;
-        /* More defined border */
-        border: 1px solid rgba(255, 255, 255, 0.12) !important; 
-        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5) !important;
+        background: rgba(15, 23, 42, 0.65) !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
       }
 
-      /* Text Readability Fixes for Liquid Dark */
-      html.dark body.liquid-glass h1, 
-      html.dark body.liquid-glass h2, 
-      html.dark body.liquid-glass h3 {
-          text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Subtle shadow to pop text */
-      }
-      
-      html.dark body.liquid-glass .text-gray-500,
-      html.dark body.liquid-glass .text-gray-400 {
-          color: #9ca3af !important; /* Force lighter gray for muted text */
-      }
-
-      /* Inputs - Clear backgrounds for max readability */
-      body.liquid-glass input, 
-      body.liquid-glass textarea,
-      body.liquid-glass select {
-          background-color: rgba(255, 255, 255, 0.9) !important;
-          border-color: rgba(209, 213, 219, 0.6) !important;
-      }
-      html.dark body.liquid-glass input, 
-      html.dark body.liquid-glass textarea,
-      html.dark body.liquid-glass select {
-          background-color: rgba(0, 0, 0, 0.6) !important;
-          border-color: rgba(75, 85, 99, 0.6) !important;
-          color: #ffffff !important;
-      }
-
-      /* Headers & Nav */
+      /* Headers & Nav - Ultra Clear */
       body.liquid-glass header {
-         background-color: rgba(255, 255, 255, 0.8) !important;
+         background: rgba(255, 255, 255, 0.3) !important;
          backdrop-filter: blur(20px) !important;
-         border-bottom: 1px solid rgba(255,255,255,0.5) !important;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
       }
       html.dark body.liquid-glass header {
-         background-color: rgba(5, 10, 25, 0.85) !important;
-         backdrop-filter: blur(20px) !important;
-         border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+         background: rgba(2, 6, 23, 0.3) !important;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
       }
       
       body.liquid-glass nav {
-         background-color: rgba(255, 255, 255, 0.9) !important;
-         border-top: 1px solid rgba(255,255,255,0.5) !important;
+         background: rgba(255, 255, 255, 0.7) !important;
+         border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+         backdrop-filter: blur(20px) !important;
       }
       html.dark body.liquid-glass nav {
-         background-color: rgba(5, 10, 25, 0.9) !important;
-         border-top: 1px solid rgba(255,255,255,0.1) !important;
+         background: rgba(2, 6, 23, 0.6) !important;
+         border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
       }
 
       /* Weather Animations */
@@ -247,23 +226,23 @@
   <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.87.1",
     "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
-    "path": "https://esm.sh/path@^0.12.7",
-    "vite": "https://esm.sh/vite@^7.2.7",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "@capacitor/local-notifications": "https://esm.sh/@capacitor/local-notifications@^8.0.0",
-    "@capacitor/geolocation": "https://esm.sh/@capacitor/geolocation@^8.0.0",
-    "@capacitor/cli": "https://esm.sh/@capacitor/cli@^8.0.0"
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@capacitor/cli": "https://esm.sh/@capacitor/cli@^8.0.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "path": "https://esm.sh/path@^0.12.7",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.87.1",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@capacitor/geolocation": "https://esm.sh/@capacitor/geolocation@^8.0.0"
   }
 }
 </script>
-  <script type="module" crossorigin src="/FamilienHub/assets/index-ipfVKTts.js"></script>
+  <script type="module" crossorigin src="./assets/index-B0uvdKwP.js"></script>
 </head>
   <body class="transition-colors duration-300">
     <div id="root"></div>
-</body>
+  </body>
 </html>
