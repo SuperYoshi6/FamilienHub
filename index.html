@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>FamilienHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                bg: '#111827',
+                card: '#1f2937',
+                text: '#f3f4f6',
+                muted: '#9ca3af'
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'slide-in': 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'slide-up': 'slideUp 0.3s ease-out forwards',
+              'fade-in': 'fadeIn 0.4s ease-out forwards',
+              'gradient-x': 'gradientX 20s ease infinite',
+              'blob': 'blob 7s infinite',
+              'rain': 'fall linear infinite',
+              'cloud': 'drift ease-in-out infinite alternate',
+              'thunder': 'flash 5s infinite'
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              slideIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px) scale(0.98)' },
+                '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              gradientX: {
+                '0%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' },
+                '100%': { 'background-position': '0% 50%' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              fall: {
+                '0%': { transform: 'translateY(-10vh) translateX(0)', opacity: '0' },
+                '10%': { opacity: '1' },
+                '90%': { opacity: '1' },
+                '100%': { transform: 'translateY(110vh) translateX(10px)', opacity: '0' }
+              },
+              drift: {
+                '0%': { transform: 'translateX(-5%)' },
+                '50%': { transform: 'translateX(5%)' },
+                '100%': { transform: 'translateX(-5%)' }
+              },
+              flash: {
+                '0%, 90%, 100%': { opacity: '0' },
+                '92%, 96%': { opacity: '0.6' },
+                '94%': { opacity: '0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* Disable selection globally for app-like feel */
+      html, body {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        overscroll-behavior-y: none;
+      }
+
+      /* Re-enable selection for inputs */
+      input, textarea, [contenteditable="true"] {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f3f4f6;
+        transition: background-color 0.5s ease, color 0.5s ease;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      
+      header.sticky {
+        top: env(safe-area-inset-top);
+      }
+      
+      nav.fixed.bottom-0 {
+        padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+      }
+
+      .dark body {
+        background-color: #111827;
+        color: #f3f4f6;
+      }
+      
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #475569;
+      }
+
+      .page-transition-wrapper {
+        animation: slideIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        width: 100%;
+      }
+
+      /* --- LIQUID GLASS EFFECT --- */
+      body.liquid-glass {
+        background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #dbeafe, #eff6ff);
+        background-size: 400% 400%;
+        animation: gradientX 20s ease infinite;
+        background-attachment: fixed;
+      }
+      
+      html.dark body.liquid-glass {
+        background: linear-gradient(-45deg, #0f172a, #172554, #1e1b4b, #020617);
+        background-size: 400% 400%;
+        animation: gradientX 25s ease infinite;
+      }
+
+      body.liquid-glass .bg-white,
+      body.liquid-glass .bg-gray-50 {
+        background: rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+      }
+
+      html.dark body.liquid-glass .dark\:bg-gray-800,
+      html.dark body.liquid-glass .dark\:bg-gray-900,
+      html.dark body.liquid-glass .dark\:bg-gray-700,
+      html.dark body.liquid-glass .bg-gray-900,
+      html.dark body.liquid-glass .bg-gray-800 {
+        background: rgba(15, 23, 42, 0.65) !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+
+      body.liquid-glass header {
+         background: rgba(255, 255, 255, 0.3) !important;
+         backdrop-filter: blur(20px) !important;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      }
+      html.dark body.liquid-glass header {
+         background: rgba(2, 6, 23, 0.3) !important;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+      }
+      
+      body.liquid-glass nav {
+         background: rgba(255, 255, 255, 0.7) !important;
+         border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+         backdrop-filter: blur(20px) !important;
+      }
+      html.dark body.liquid-glass nav {
+         background: rgba(2, 6, 23, 0.6) !important;
+         border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.87.1",
+    "@capacitor/core": "https://esm.sh/@capacitor/core@^6.0.0",
+    "@capacitor/local-notifications": "https://esm.sh/@capacitor/local-notifications@^6.0.0",
+    "@capacitor/geolocation": "https://esm.sh/@capacitor/geolocation@^6.0.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@capacitor/cli": "https://esm.sh/@capacitor/cli@^8.0.0",
+    "@capacitor/app": "https://esm.sh/@capacitor/app@^8.0.0"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

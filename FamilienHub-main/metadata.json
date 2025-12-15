@@ -1,0 +1,7 @@
+{
+  "name": "FamilienHub",
+  "description": "Die ultimative Organisations-App für Familien.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
